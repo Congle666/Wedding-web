@@ -1,0 +1,43 @@
+# ─── Go ───────────────────────────────────
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+vendor/
+
+# ─── Node / Frontend ──────────────────────
+node_modules/
+.next/
+dist/
+*.tsbuildinfo
+.turbo/
+
+# ─── IDE ──────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ─── Environment / Secrets ────────────────
+.env
+.env.*
+!.env.example
+
+# ─── Uploads (user content, not in repo) ──
+uploads/*
+!uploads/.gitkeep
+
+# ─── OS ───────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Build artifacts ──────────────────────
+repomix-output.xml
+
+# ─── Claude Code ──────────────────────────
+.claude/

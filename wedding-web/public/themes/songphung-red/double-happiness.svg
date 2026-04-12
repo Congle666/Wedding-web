@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap');
+    </style>
+  </defs>
+  <circle cx="200" cy="200" r="195" fill="none" stroke="#8B1A1A" stroke-width="3" opacity="0.3"/>
+  <circle cx="200" cy="200" r="180" fill="none" stroke="#8B1A1A" stroke-width="1" opacity="0.15"/>
+  <text x="200" y="280" text-anchor="middle" font-size="300" fill="#8B1A1A" font-family="'Noto Serif SC', 'SimSun', 'STSong', serif" font-weight="900" opacity="0.95">囍</text>
+</svg>

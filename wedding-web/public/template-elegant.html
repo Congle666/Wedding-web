@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Thiệp Cưới — {{groom_name}} & {{bride_name}}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ========== RESET ========== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Be Vietnam Pro',sans-serif;color:#3D1010;background:#F5EAE0;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ========== FONTS ========== */
+.font-display{font-family:'Cormorant Garamond',serif}
+.font-date{font-family:'Playfair Display',serif}
+
+/* ========== DESKTOP WRAPPER ========== */
+@media(min-width:1024px){
+  body{background:#E8D5C4}
+  .page{max-width:800px;margin:0 auto;box-shadow:0 0 60px rgba(0,0,0,0.15);background:#F5EAE0;position:relative}
+}
+
+/* ========== SECTION 1: PHONG BÌ ========== */
+.envelope{
+  position:relative;min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:40px 24px;overflow:hidden;background:#F5EAE0;
+}
+.envelope__bg-left, .envelope__bg-right{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:200px;height:auto;opacity:0.12;pointer-events:none;
+}
+.envelope__bg-left{left:-20px}
+.envelope__bg-right{right:-20px;transform:translateY(-50%) scaleX(-1)}
+
+/* === HƯỚNG DẪN: Thay URL ảnh dưới đây bằng ảnh Canva của bạn === */
+/* Ảnh phượng hoàng: tạo trên Canva, export PNG nền trong suốt */
+/* Ảnh chữ Hỷ: tạo trên Canva, export PNG nền trong suốt */
+
+.envelope__hy{width:80px;height:80px;margin-bottom:24px;opacity:0.9}
+.envelope__ornament-top{width:180px;height:auto;margin-bottom:20px;opacity:0.6}
+
+.envelope__names{margin-bottom:16px}
+.envelope__name{
+  font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:500;
+  color:#3D1010;display:block;line-height:1.2;
+}
+.envelope__amp{
+  font-family:'Cormorant Garamond',serif;font-size:28px;font-style:italic;
+  color:#C8963C;margin:4px 0;display:block;
+}
+.envelope__divider{width:120px;height:1px;background:#C8963C;margin:16px auto}
+.envelope__date{
+  font-family:'Playfair Display',serif;font-size:18px;color:#3D1010;
+  margin-bottom:8px;letter-spacing:0.02em;
+}
+.envelope__invite{
+  font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;
+  color:#8B1A1A;margin-bottom:32px;letter-spacing:0.1em;
+}
+.envelope__btn{
+  display:inline-block;padding:14px 40px;background:#8B1A1A;color:#fff;
+  border:none;border-radius:40px;font-size:15px;font-weight:500;
+  cursor:pointer;letter-spacing:0.03em;transition:background 0.2s;
+  font-family:'Be Vietnam Pro',sans-serif;
+}
+.envelope__btn:hover{background:#6E1515}
+
+.envelope__corner{position:absolute;width:80px;height:80px;opacity:0.15}
+.envelope__corner--tl{top:16px;left:16px}
+.envelope__corner--tr{top:16px;right:16px;transform:scaleX(-1)}
+.envelope__corner--bl{bottom:16px;left:16px;transform:scaleY(-1)}
+.envelope__corner--br{bottom:16px;right:16px;transform:scale(-1)}
+
+/* ========== SECTION 2: ĐẾM NGƯỢC ========== */
+.countdown{
+  background:#8B1A1A;padding:56px 24px;text-align:center;
+}
+.countdown__title{
+  font-family:'Cormorant Garamond',serif;font-size:24px;font-style:italic;
+  color:#C8963C;margin-bottom:32px;
+}
+.countdown__grid{
+  display:flex;justify-content:center;gap:16px;flex-wrap:wrap;
+}
+.countdown__item{min-width:70px}
+.countdown__num{
+  font-family:'Playfair Display',serif;font-size:48px;font-weight:600;
+  color:#fff;line-height:1;
+}
+.countdown__label{
+  font-size:11px;color:#C8963C;text-transform:uppercase;letter-spacing:0.1em;
+  margin-top:6px;
+}
+.countdown__sep{
+  font-family:'Playfair Display',serif;font-size:36px;color:rgba(255,255,255,0.3);
+  align-self:flex-start;padding-top:8px;animation:blink 1s infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* ========== SECTION 3: THÔNG TIN LỄ CƯỚI ========== */
+.ceremony{padding:72px 24px;background:#FDFAF7;text-align:center}
+.section-title{
+  font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:500;
+  color:#8B1A1A;margin-bottom:8px;
+}
+.section-sub{font-size:14px;color:#6B6B6B;margin-bottom:40px}
+.ceremony__grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:600px;margin:0 auto;
+}
+@media(max-width:640px){.ceremony__grid{grid-template-columns:1fr}}
+.ceremony__card{
+  background:#fff;border-radius:16px;padding:32px 24px;text-align:center;
+  border:1px solid #EDE8E1;box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+.ceremony__card-title{
+  font-family:'Playfair Display',serif;font-size:18px;color:#8B1A1A;
+  margin-bottom:8px;font-weight:600;
+}
+.ceremony__gold-line{width:40px;height:2px;background:#C8963C;margin:0 auto 16px}
+.ceremony__time{
+  font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:600;
+  color:#3D1010;margin-bottom:4px;
+}
+.ceremony__date{font-size:14px;color:#6B6B6B;margin-bottom:12px}
+.ceremony__venue{font-size:14px;color:#3D1010;line-height:1.6;margin-bottom:16px}
+.ceremony__map-btn{
+  display:inline-block;padding:8px 20px;border:1px solid #8B1A1A;color:#8B1A1A;
+  border-radius:8px;font-size:13px;text-decoration:none;transition:all 0.2s;
+}
+.ceremony__map-btn:hover{background:#8B1A1A;color:#fff}
+
+/* ========== SECTION 4: GIA ĐÌNH ========== */
+.family{padding:72px 24px;background:#F5EAE0;text-align:center}
+.family__grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:600px;margin:0 auto;
+}
+@media(max-width:640px){.family__grid{grid-template-columns:1fr;gap:32px}}
+.family__side-label{
+  font-size:11px;text-transform:uppercase;letter-spacing:0.1em;
+  color:#8B1A1A;margin-bottom:8px;font-weight:600;
+}
+.family__name{
+  font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;
+  color:#3D1010;margin-bottom:12px;
+}
+.family__parent{font-size:14px;color:#6B6B6B;line-height:1.7}
+
+/* ========== SECTION 5: GALLERY ========== */
+.gallery{padding:72px 24px;background:#FDFAF7;text-align:center}
+.gallery__grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:600px;margin:24px auto 0;
+}
+@media(max-width:640px){.gallery__grid{grid-template-columns:repeat(2,1fr)}}
+.gallery__item{
+  aspect-ratio:1;border-radius:12px;overflow:hidden;cursor:pointer;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.gallery__item:hover{transform:scale(1.03);box-shadow:0 4px 16px rgba(0,0,0,0.12)}
+.gallery__item img{width:100%;height:100%;object-fit:cover}
+.gallery__placeholder{
+  width:100%;height:100%;background:linear-gradient(135deg,#F5EAE0,#E8D5C4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;color:#C8963C;font-style:italic;
+}
+
+/* ========== SECTION 6: RSVP ========== */
+.rsvp{padding:72px 24px;background:#8B1A1A;text-align:center}
+.rsvp .section-title{color:#C8963C}
+.rsvp .section-sub{color:rgba(255,255,255,0.6)}
+.rsvp__form{max-width:480px;margin:0 auto}
+.rsvp__input,.rsvp__textarea{
+  width:100%;padding:14px 16px;border:1px solid rgba(255,255,255,0.2);
+  border-radius:8px;background:rgba(255,255,255,0.08);color:#fff;
+  font-size:14px;font-family:'Be Vietnam Pro',sans-serif;
+  margin-bottom:12px;outline:none;transition:border-color 0.2s;
+}
+.rsvp__input::placeholder,.rsvp__textarea::placeholder{color:rgba(255,255,255,0.4)}
+.rsvp__input:focus,.rsvp__textarea:focus{border-color:#C8963C}
+.rsvp__textarea{min-height:100px;resize:vertical}
+.rsvp__radio-group{
+  display:flex;gap:16px;justify-content:center;margin-bottom:16px;
+}
+.rsvp__radio{
+  padding:10px 24px;border:1px solid rgba(255,255,255,0.2);border-radius:8px;
+  color:rgba(255,255,255,0.7);font-size:14px;cursor:pointer;transition:all 0.2s;
+  background:transparent;font-family:'Be Vietnam Pro',sans-serif;
+}
+.rsvp__radio.active{border-color:#C8963C;color:#C8963C;background:rgba(200,150,60,0.1)}
+.rsvp__submit{
+  display:inline-block;padding:14px 48px;background:#C8963C;color:#3D1010;
+  border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;
+  font-family:'Be Vietnam Pro',sans-serif;transition:background 0.2s;margin-top:8px;
+}
+.rsvp__submit:hover{background:#D4A574}
+.rsvp__success{
+  padding:24px;background:rgba(255,255,255,0.1);border-radius:12px;
+  color:#C8963C;font-size:16px;display:none;
+}
+
+/* ========== SECTION 7: SỔ LƯU BÚT ========== */
+.wishes{padding:72px 24px;background:#FDFAF7;text-align:center}
+.wishes__list{max-width:560px;margin:24px auto}
+.wishes__card{
+  background:#fff;border-radius:12px;padding:20px;margin-bottom:12px;
+  text-align:left;border:1px solid #EDE8E1;
+}
+.wishes__card-header{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.wishes__avatar{
+  width:36px;height:36px;border-radius:50%;background:#8B1A1A;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;
+  flex-shrink:0;
+}
+.wishes__card-name{font-weight:600;font-size:14px;color:#3D1010}
+.wishes__card-date{font-size:12px;color:#9CA3AF}
+.wishes__card-text{font-size:14px;color:#6B6B6B;line-height:1.6}
+.wishes__form{max-width:560px;margin:24px auto 0;text-align:left}
+.wishes__form-input{
+  width:100%;padding:12px 14px;border:1px solid #EDE8E1;border-radius:8px;
+  font-size:14px;margin-bottom:8px;outline:none;font-family:'Be Vietnam Pro',sans-serif;
+}
+.wishes__form-input:focus{border-color:#8B1A1A}
+.wishes__form-btn{
+  padding:10px 32px;background:#8B1A1A;color:#fff;border:none;border-radius:8px;
+  font-size:14px;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;
+}
+
+/* ========== SECTION 8: NGÂN HÀNG ========== */
+.bank{padding:72px 24px;background:#F5EAE0;text-align:center}
+.bank__grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:600px;margin:24px auto 0;
+}
+@media(max-width:640px){.bank__grid{grid-template-columns:1fr}}
+.bank__card{
+  background:#fff;border-radius:16px;padding:24px;text-align:center;
+  border:1px solid #EDE8E1;box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+.bank__card-label{font-size:12px;color:#8B1A1A;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;font-weight:600}
+.bank__card-name{font-size:16px;font-weight:600;color:#3D1010;margin-bottom:12px}
+.bank__card-bank{font-size:14px;color:#6B6B6B;margin-bottom:4px}
+.bank__card-acct{font-size:20px;font-weight:600;color:#3D1010;letter-spacing:0.05em;margin-bottom:4px;font-family:'Playfair Display',serif}
+.bank__card-holder{font-size:13px;color:#6B6B6B;margin-bottom:16px}
+.bank__copy-btn{
+  padding:8px 24px;background:#8B1A1A;color:#fff;border:none;border-radius:8px;
+  font-size:13px;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;transition:background 0.2s;
+}
+.bank__copy-btn:hover{background:#6E1515}
+.bank__qr{width:100px;height:100px;background:#F3F4F6;border-radius:8px;margin:12px auto 0;display:flex;align-items:center;justify-content:center;font-size:11px;color:#9CA3AF}
+
+/* ========== SECTION 9: FOOTER ========== */
+.footer{padding:72px 24px;background:#8B1A1A;text-align:center}
+.footer__hy{width:60px;height:60px;margin:0 auto 20px;opacity:0.8}
+.footer__names{
+  font-family:'Cormorant Garamond',serif;font-size:34px;font-style:italic;
+  color:#C8963C;margin-bottom:16px;
+}
+.footer__text{font-size:15px;color:rgba(255,255,255,0.7);line-height:1.7;margin-bottom:24px}
+.footer__line{width:60px;height:1px;background:#C8963C;margin:0 auto 24px}
+.footer__credit{font-size:12px;color:rgba(255,255,255,0.3)}
+
+/* ========== NÚT NHẠC ========== */
+.music-btn{
+  position:fixed;bottom:20px;right:20px;width:44px;height:44px;border-radius:50%;
+  background:#8B1A1A;color:#fff;border:none;font-size:11px;cursor:pointer;
+  z-index:999;display:flex;align-items:center;justify-content:center;
+  font-family:'Be Vietnam Pro',sans-serif;box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+.music-btn.playing{animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 2px 8px rgba(139,26,26,0.3)}50%{box-shadow:0 2px 20px rgba(139,26,26,0.6)}}
+
+/* ========== TOAST ========== */
+.toast{
+  position:fixed;bottom:80px;right:20px;background:#3D1010;color:#fff;
+  padding:12px 20px;border-radius:8px;font-size:13px;z-index:9999;
+  transform:translateY(20px);opacity:0;transition:all 0.3s;pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ========== LIGHTBOX ========== */
+.lightbox{
+  position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:9999;
+  display:none;align-items:center;justify-content:center;
+}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90%;max-height:85vh;border-radius:8px;object-fit:contain}
+.lightbox__close{
+  position:absolute;top:20px;right:20px;background:none;border:none;
+  color:#fff;font-size:14px;cursor:pointer;font-family:'Be Vietnam Pro',sans-serif;
+}
+.lightbox__nav{
+  position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.15);
+  border:none;color:#fff;font-size:14px;cursor:pointer;padding:16px;border-radius:8px;
+  font-family:'Be Vietnam Pro',sans-serif;
+}
+.lightbox__nav--prev{left:16px}
+.lightbox__nav--next{right:16px}
+
+/* ========== SCROLL REVEAL ========== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ========== CÁNH HOA RƠI ========== */
+.petal{
+  position:absolute;width:10px;height:10px;background:#C41E3A;opacity:0;
+  border-radius:50% 0 50% 50%;pointer-events:none;
+}
+@keyframes fall{
+  0%{opacity:0;transform:translateY(-20px) rotate(0deg)}
+  10%{opacity:0.5}
+  90%{opacity:0.4}
+  100%{opacity:0;transform:translateY(100vh) rotate(720deg)}
+}
+
+/* ========== MOBILE ========== */
+@media(max-width:640px){
+  .envelope__name{font-size:32px}
+  .envelope__bg-left,.envelope__bg-right{width:140px;opacity:0.08}
+  .countdown__num{font-size:36px}
+  .ceremony,.family,.gallery,.rsvp,.wishes,.bank,.footer{padding:48px 16px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ==================== SECTION 1: PHONG BÌ ==================== -->
+<section class="envelope" id="envelope">
+  <!-- ẢNH TRANG TRÍ: Thay src bằng ảnh Canva của bạn -->
+  <!-- Phượng hoàng trái: upload ảnh PNG nền trong suốt, size ~400x500px -->
+  <img class="envelope__bg-left" src="https://placehold.co/400x500/F5EAE0/8B1A1A?text=Ph%C6%B0%E1%BB%A3ng+ho%C3%A0ng" alt="">
+  <!-- Phượng hoàng phải: dùng cùng ảnh, CSS đã tự lật -->
+  <img class="envelope__bg-right" src="https://placehold.co/400x500/F5EAE0/8B1A1A?text=Ph%C6%B0%E1%BB%A3ng+ho%C3%A0ng" alt="">
+
+  <!-- Góc trang trí: upload 1 ảnh góc, CSS xoay cho 4 góc -->
+  <img class="envelope__corner envelope__corner--tl" src="https://placehold.co/160x160/F5EAE0/C8963C?text=Hoa+v%C4%83n" alt="">
+  <img class="envelope__corner envelope__corner--tr" src="https://placehold.co/160x160/F5EAE0/C8963C?text=Hoa+v%C4%83n" alt="">
+  <img class="envelope__corner envelope__corner--bl" src="https://placehold.co/160x160/F5EAE0/C8963C?text=Hoa+v%C4%83n" alt="">
+  <img class="envelope__corner envelope__corner--br" src="https://placehold.co/160x160/F5EAE0/C8963C?text=Hoa+v%C4%83n" alt="">
+
+  <!-- Chữ Hỷ: upload ảnh PNG nền trong suốt từ Canva -->
+  <img class="envelope__hy" src="https://placehold.co/160x160/F5EAE0/8B1A1A?text=%E5%9B%8D" alt="Hỷ">
+
+  <!-- Hoa văn trang trí trên -->
+  <img class="envelope__ornament-top" src="https://placehold.co/360x60/F5EAE0/C8963C?text=~+Hoa+v%C4%83n+~" alt="">
+
+  <div class="envelope__names">
+    <span class="envelope__name">{{bride_name}}</span>
+    <span class="envelope__amp">&amp;</span>
+    <span class="envelope__name">{{groom_name}}</span>
+  </div>
+
+  <div class="envelope__divider"></div>
+  <p class="envelope__date font-date">{{wedding_date}}</p>
+  <p class="envelope__invite font-display">Thân Mời</p>
+  <button class="envelope__btn" id="btnOpen" onclick="openEnvelope()">Mở thiệp</button>
+
+  <!-- Cánh hoa rơi -->
+  <div id="petals"></div>
+</section>
+
+<!-- ==================== SECTION 2: ĐẾM NGƯỢC ==================== -->
+<section class="countdown reveal" id="countdown">
+  <p class="countdown__title font-display">Đếm ngược đến ngày trọng đại</p>
+  <div class="countdown__grid">
+    <div class="countdown__item">
+      <div class="countdown__num font-date" id="cd-days">00</div>
+      <div class="countdown__label">Ngày</div>
+    </div>
+    <span class="countdown__sep">:</span>
+    <div class="countdown__item">
+      <div class="countdown__num font-date" id="cd-hours">00</div>
+      <div class="countdown__label">Giờ</div>
+    </div>
+    <span class="countdown__sep">:</span>
+    <div class="countdown__item">
+      <div class="countdown__num font-date" id="cd-mins">00</div>
+      <div class="countdown__label">Phút</div>
+    </div>
+    <span class="countdown__sep">:</span>
+    <div class="countdown__item">
+      <div class="countdown__num font-date" id="cd-secs">00</div>
+      <div class="countdown__label">Giây</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 3: LỄ CƯỚI ==================== -->
+<section class="ceremony reveal">
+  <p class="section-title">Lễ Cưới</p>
+  <p class="section-sub">Trân trọng kính mời quý khách đến dự</p>
+  <div class="ceremony__grid">
+    <div class="ceremony__card">
+      <p class="ceremony__card-title font-date">Lễ Gia Tiên</p>
+      <div class="ceremony__gold-line"></div>
+      <p class="ceremony__time font-display">{{wedding_time}}</p>
+      <p class="ceremony__date">{{wedding_date}}</p>
+      <p class="ceremony__venue">{{ceremony_venue}}<br>{{venue_address}}</p>
+      <a class="ceremony__map-btn" href="https://maps.google.com/?q={{venue_address}}" target="_blank">Xem bản đồ</a>
+    </div>
+    <div class="ceremony__card">
+      <p class="ceremony__card-title font-date">Tiệc Cưới</p>
+      <div class="ceremony__gold-line"></div>
+      <p class="ceremony__time font-display">{{reception_time}}</p>
+      <p class="ceremony__date">{{wedding_date}}</p>
+      <p class="ceremony__venue">{{reception_venue}}<br>{{venue_address}}</p>
+      <a class="ceremony__map-btn" href="https://maps.google.com/?q={{venue_address}}" target="_blank">Xem bản đồ</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 4: GIA ĐÌNH ==================== -->
+<section class="family reveal">
+  <p class="section-title">Hai Họ Thông Gia</p>
+  <div class="envelope__divider" style="margin:16px auto 40px"></div>
+  <div class="family__grid">
+    <div>
+      <p class="family__side-label">Gia đình Chú Rể</p>
+      <p class="family__name font-display">{{groom_name}}</p>
+      <p class="family__parent">{{groom_parent}}</p>
+    </div>
+    <div>
+      <p class="family__side-label">Gia đình Cô Dâu</p>
+      <p class="family__name font-display">{{bride_name}}</p>
+      <p class="family__parent">{{bride_parent}}</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 5: GALLERY ==================== -->
+<section class="gallery reveal">
+  <p class="section-title font-display">Khoảnh Khắc Của Chúng Tôi</p>
+  <div class="gallery__grid" id="galleryGrid">
+    {{gallery_html}}
+    <!-- Nếu chưa có ảnh, hiện placeholder -->
+    <div class="gallery__item"><div class="gallery__placeholder">Ảnh 1</div></div>
+    <div class="gallery__item"><div class="gallery__placeholder">Ảnh 2</div></div>
+    <div class="gallery__item"><div class="gallery__placeholder">Ảnh 3</div></div>
+    <div class="gallery__item"><div class="gallery__placeholder">Ảnh 4</div></div>
+    <div class="gallery__item"><div class="gallery__placeholder">Ảnh 5</div></div>
+    <div class="gallery__item"><div class="gallery__placeholder">Ảnh 6</div></div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 6: RSVP ==================== -->
+<section class="rsvp reveal">
+  <p class="section-title">Xác Nhận Tham Dự</p>
+  <p class="section-sub">Vui lòng xác nhận trước ngày cưới</p>
+  <div class="rsvp__form" id="rsvpForm">
+    <input class="rsvp__input" type="text" placeholder="Họ và tên" id="rsvpName">
+    <input class="rsvp__input" type="tel" placeholder="Số điện thoại" id="rsvpPhone">
+    <div class="rsvp__radio-group">
+      <button class="rsvp__radio active" onclick="selectRSVP(this,'yes')">Tham dự</button>
+      <button class="rsvp__radio" onclick="selectRSVP(this,'no')">Không tham dự</button>
+    </div>
+    <input class="rsvp__input" type="number" placeholder="Số người tham dự" id="rsvpGuests" min="1" value="1">
+    <textarea class="rsvp__textarea" placeholder="Lời chúc (tuỳ chọn)" id="rsvpWish"></textarea>
+    <button class="rsvp__submit" onclick="submitRSVP()">Gửi xác nhận</button>
+  </div>
+  <div class="rsvp__success" id="rsvpSuccess">
+    Cảm ơn bạn đã xác nhận! Chúng tôi rất vui được đón tiếp.
+  </div>
+</section>
+
+<!-- ==================== SECTION 7: LỜI CHÚC ==================== -->
+<section class="wishes reveal">
+  <p class="section-title">Lời Chúc Của Bạn</p>
+  <div class="wishes__list" id="wishesList">
+    <div class="wishes__card">
+      <div class="wishes__card-header">
+        <div class="wishes__avatar">NV</div>
+        <div><p class="wishes__card-name">Nguyễn Văn</p><p class="wishes__card-date">Hôm nay</p></div>
+      </div>
+      <p class="wishes__card-text">Chúc hai bạn trăm năm hạnh phúc, sớm có thiên thần nhỏ!</p>
+    </div>
+    <div class="wishes__card">
+      <div class="wishes__card-header">
+        <div class="wishes__avatar">TH</div>
+        <div><p class="wishes__card-name">Trần Hương</p><p class="wishes__card-date">Hôm qua</p></div>
+      </div>
+      <p class="wishes__card-text">Hạnh phúc mãi nhé! Thiệp đẹp quá!</p>
+    </div>
+  </div>
+  <div class="wishes__form">
+    <input class="wishes__form-input" type="text" placeholder="Tên của bạn" id="wishName">
+    <textarea class="wishes__form-input" placeholder="Viết lời chúc..." id="wishText" rows="3"></textarea>
+    <button class="wishes__form-btn" onclick="submitWish()">Gửi lời chúc</button>
+  </div>
+</section>
+
+<!-- ==================== SECTION 8: NGÂN HÀNG ==================== -->
+<section class="bank reveal">
+  <p class="section-title">Mừng Cưới</p>
+  <p class="section-sub">Sự hiện diện của bạn là món quà quý giá nhất.<br>Nếu muốn gửi lời chúc qua chuyển khoản:</p>
+  <div class="bank__grid">
+    {{bank_accounts_html}}
+  </div>
+</section>
+
+<!-- ==================== SECTION 9: FOOTER ==================== -->
+<section class="footer">
+  <img class="footer__hy" src="https://placehold.co/120x120/8B1A1A/C8963C?text=%E5%9B%8D" alt="Hỷ">
+  <p class="footer__names font-display">{{groom_name}} & {{bride_name}}</p>
+  <p class="footer__text">Trân trọng cảm ơn sự hiện diện của bạn<br>trong ngày trọng đại của chúng tôi.</p>
+  <div class="footer__line"></div>
+  <p class="footer__credit">Được tạo bởi JunTech — juntech.vn</p>
+</section>
+
+</div><!-- .page -->
+
+<!-- NÚT NHẠC -->
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">Nhạc</button>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox__close" onclick="closeLightbox()">Đóng</button>
+  <button class="lightbox__nav lightbox__nav--prev" onclick="prevImg()">Trước</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox__nav lightbox__nav--next" onclick="nextImg()">Sau</button>
+</div>
+
+<script>
+/* ========== MỞ PHONG BÌ ========== */
+function openEnvelope(){
+  var env=document.getElementById('envelope');
+  env.style.transition='opacity 0.5s, transform 0.5s';
+  env.style.opacity='0';
+  env.style.transform='scale(0.95)';
+  setTimeout(function(){
+    env.style.display='none';
+    document.getElementById('countdown').scrollIntoView({behavior:'smooth'});
+  },500);
+}
+
+/* ========== ĐẾM NGƯỢC ========== */
+var weddingDate=new Date('{{wedding_date_iso}}').getTime();
+function updateCountdown(){
+  var now=Date.now();
+  var diff=weddingDate-now;
+  if(diff<=0){
+    document.getElementById('cd-days').textContent='00';
+    document.getElementById('cd-hours').textContent='00';
+    document.getElementById('cd-mins').textContent='00';
+    document.getElementById('cd-secs').textContent='00';
+    return;
+  }
+  var d=Math.floor(diff/(1000*60*60*24));
+  var h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  var m=Math.floor((diff%(1000*60*60))/(1000*60));
+  var s=Math.floor((diff%(1000*60))/1000);
+  document.getElementById('cd-days').textContent=String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent=String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent=String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent=String(s).padStart(2,'0');
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+/* ========== SCROLL REVEAL ========== */
+var reveals=document.querySelectorAll('.reveal');
+var observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('visible')}});
+},{threshold:0.12});
+reveals.forEach(function(el){observer.observe(el)});
+
+/* ========== CÁNH HOA RƠI ========== */
+(function(){
+  var container=document.getElementById('petals');
+  if(!container)return;
+  for(var i=0;i<15;i++){
+    var petal=document.createElement('div');
+    petal.className='petal';
+    petal.style.left=Math.random()*100+'%';
+    petal.style.animationDelay=Math.random()*8+'s';
+    petal.style.animationDuration=(6+Math.random()*6)+'s';
+    petal.style.animation='fall '+petal.style.animationDuration+' '+petal.style.animationDelay+' infinite linear';
+    petal.style.width=(6+Math.random()*8)+'px';
+    petal.style.height=petal.style.width;
+    container.appendChild(petal);
+  }
+})();
+
+/* ========== RSVP ========== */
+var rsvpAttend='yes';
+function selectRSVP(btn,val){
+  rsvpAttend=val;
+  document.querySelectorAll('.rsvp__radio').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  document.getElementById('rsvpGuests').style.display=val==='yes'?'block':'none';
+}
+function submitRSVP(){
+  var name=document.getElementById('rsvpName').value.trim();
+  if(!name){showToast('Vui lòng nhập họ tên');return}
+  document.getElementById('rsvpForm').style.display='none';
+  var success=document.getElementById('rsvpSuccess');
+  success.style.display='block';
+  success.innerHTML='Cảm ơn <strong>'+name+'</strong>! '+(rsvpAttend==='yes'?'Chúng tôi rất vui được đón tiếp bạn.':'Rất tiếc không có bạn, hẹn dịp khác nhé!');
+}
+
+/* ========== LỜI CHÚC ========== */
+function submitWish(){
+  var name=document.getElementById('wishName').value.trim();
+  var text=document.getElementById('wishText').value.trim();
+  if(!name||!text){showToast('Vui lòng nhập tên và lời chúc');return}
+  var initials=name.split(' ').map(function(w){return w[0]}).join('').substring(0,2).toUpperCase();
+  var card=document.createElement('div');
+  card.className='wishes__card';
+  card.innerHTML='<div class="wishes__card-header"><div class="wishes__avatar">'+initials+'</div><div><p class="wishes__card-name">'+name+'</p><p class="wishes__card-date">Vừa xong</p></div></div><p class="wishes__card-text">'+text+'</p>';
+  var list=document.getElementById('wishesList');
+  list.insertBefore(card,list.firstChild);
+  document.getElementById('wishName').value='';
+  document.getElementById('wishText').value='';
+  showToast('Đã gửi lời chúc!');
+}
+
+/* ========== COPY NGÂN HÀNG ========== */
+function copyBank(text){
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(function(){showToast('Đã sao chép: '+text)});
+  }else{
+    var ta=document.createElement('textarea');
+    ta.value=text;document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);
+    showToast('Đã sao chép: '+text);
+  }
+}
+
+/* ========== TOAST ========== */
+function showToast(msg){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show')},2500);
+}
+
+/* ========== NHẠC ========== */
+var musicPlaying=false;
+function toggleMusic(){
+  musicPlaying=!musicPlaying;
+  var btn=document.getElementById('musicBtn');
+  btn.classList.toggle('playing',musicPlaying);
+  btn.textContent=musicPlaying?'Tắt':'Nhạc';
+}
+
+/* ========== LIGHTBOX ========== */
+var lbImages=[];var lbIndex=0;
+document.querySelectorAll('.gallery__item img').forEach(function(img,i){
+  lbImages.push(img.src);
+  img.addEventListener('click',function(){openLightbox(i)});
+});
+function openLightbox(i){
+  lbIndex=i;
+  document.getElementById('lightboxImg').src=lbImages[i];
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+function prevImg(){lbIndex=(lbIndex-1+lbImages.length)%lbImages.length;document.getElementById('lightboxImg').src=lbImages[lbIndex]}
+function nextImg(){lbIndex=(lbIndex+1)%lbImages.length;document.getElementById('lightboxImg').src=lbImages[lbIndex]}
+</script>
+</body>
+</html>

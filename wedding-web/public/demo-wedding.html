@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Thiệp Cưới — Minh Lên & Thị Nhí</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Be Vietnam Pro',sans-serif;color:#3D1010;background:#F5EAE0;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.cormorant{font-family:'Cormorant Garamond',serif}
+.playfair{font-family:'Playfair Display',serif}
+
+/* Desktop wrapper */
+@media(min-width:1024px){
+  body{background:#E8D5C4}
+  .page-wrapper{max-width:800px;margin:0 auto;box-shadow:0 0 60px rgba(0,0,0,0.15);background:#F5EAE0;position:relative}
+}
+.page-wrapper{position:relative}
+
+/* ========== SECTION 1: ENVELOPE ========== */
+.envelope{min-height:100vh;background:#F5EAE0;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:40px 20px;transition:opacity 0.8s ease,transform 0.8s ease}
+.envelope.hidden{opacity:0;pointer-events:none;transform:translateY(-30px)}
+.envelope-corner-tl,.envelope-corner-tr,.envelope-corner-bl,.envelope-corner-br{position:absolute;width:80px;height:80px;opacity:0.2}
+.envelope-corner-tl{top:15px;left:15px}
+.envelope-corner-tr{top:15px;right:15px;transform:scaleX(-1)}
+.envelope-corner-bl{bottom:15px;left:15px;transform:scaleY(-1)}
+.envelope-corner-br{bottom:15px;right:15px;transform:scale(-1,-1)}
+.cherry-blossom{position:absolute;top:-10px;right:-10px;width:200px;height:200px;opacity:0.2}
+.phoenix-pair{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:10px}
+.phoenix-svg{width:180px;height:auto}
+@media(min-width:640px){.phoenix-svg{width:260px}}
+.phoenix-right{transform:scaleX(-1)}
+.double-happiness-circle{width:80px;height:80px;margin-bottom:16px}
+.envelope-names{text-align:center;margin-bottom:10px}
+.envelope-names .name{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;font-style:italic;color:#8B1A1A;display:block}
+@media(min-width:640px){.envelope-names .name{font-size:42px}}
+.envelope-names .amp{font-family:'Cormorant Garamond',serif;font-size:28px;color:#C8963C;margin:4px 0;display:block}
+.envelope-divider{margin:12px 0}
+.envelope-date{font-family:'Playfair Display',serif;font-size:18px;color:#3D1010;margin-bottom:8px;letter-spacing:1px}
+.envelope-invite{font-family:'Cormorant Garamond',serif;font-size:22px;color:#8B1A1A;font-style:italic;margin-bottom:24px}
+.btn-open{background:#8B1A1A;color:#fff;border:none;padding:14px 44px;border-radius:50px;font-family:'Be Vietnam Pro',sans-serif;font-size:15px;font-weight:500;cursor:pointer;letter-spacing:1px;transition:background 0.3s,transform 0.2s;box-shadow:0 4px 15px rgba(139,26,26,0.3)}
+.btn-open:hover{background:#A02020;transform:translateY(-2px)}
+.btn-open:active{transform:translateY(0)}
+
+/* Falling petals */
+.petal{position:absolute;top:-30px;width:10px;height:14px;opacity:0;pointer-events:none;animation:petalFall linear infinite}
+@keyframes petalFall{
+  0%{opacity:0;transform:translateY(-20px) rotate(0deg) translateX(0)}
+  10%{opacity:0.6}
+  50%{transform:translateY(50vh) rotate(180deg) translateX(30px)}
+  80%{opacity:0.4}
+  100%{opacity:0;transform:translateY(105vh) rotate(360deg) translateX(-20px)}
+}
+
+/* ========== SECTION 2: COUNTDOWN ========== */
+.countdown-section{background:#8B1A1A;padding:60px 20px;text-align:center}
+.countdown-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:#C8963C;margin-bottom:30px}
+@media(min-width:640px){.countdown-title{font-size:26px}}
+.countdown-row{display:flex;align-items:center;justify-content:center;gap:6px}
+.countdown-box{display:flex;flex-direction:column;align-items:center;min-width:60px}
+@media(min-width:640px){.countdown-box{min-width:80px}}
+.countdown-num{font-family:'Playfair Display',serif;font-size:40px;font-weight:700;color:#fff;line-height:1}
+@media(min-width:640px){.countdown-num{font-size:52px}}
+.countdown-label{font-size:11px;color:#C8963C;text-transform:uppercase;letter-spacing:1.5px;margin-top:6px;font-weight:500}
+.countdown-sep{font-family:'Playfair Display',serif;font-size:36px;color:#fff;opacity:0.6;animation:blink 1s step-end infinite;margin-bottom:18px}
+@keyframes blink{50%{opacity:0}}
+
+/* ========== SECTION 3: CEREMONY INFO ========== */
+.ceremony-section{background:#FDFAF7;padding:60px 20px;text-align:center;position:relative}
+.section-ornament{display:block;margin:0 auto 20px;width:200px}
+.ceremony-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:#8B1A1A;margin-bottom:8px;font-weight:700}
+@media(min-width:640px){.ceremony-title{font-size:32px}}
+.ceremony-subtitle{font-size:14px;color:#8B1A1A;opacity:0.7;margin-bottom:30px}
+.ceremony-cards{display:flex;flex-direction:column;gap:20px;max-width:600px;margin:0 auto}
+@media(min-width:640px){.ceremony-cards{flex-direction:row;gap:24px}}
+.ceremony-card{flex:1;background:#fff;border-radius:16px;padding:28px 20px;box-shadow:0 4px 20px rgba(139,26,26,0.06);border:1px solid rgba(139,26,26,0.08)}
+.ceremony-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;color:#8B1A1A;font-weight:700;margin-bottom:6px}
+.ceremony-card .time{font-family:'Playfair Display',serif;font-size:28px;color:#C41E3A;font-weight:600;margin-bottom:4px}
+.ceremony-card .date-text{font-size:14px;color:#3D1010;margin-bottom:4px}
+.ceremony-card .venue-text{font-size:13px;color:#666;margin-bottom:14px;line-height:1.5}
+.btn-map{display:inline-block;background:transparent;color:#8B1A1A;border:1.5px solid #8B1A1A;padding:8px 22px;border-radius:50px;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.3s;text-decoration:none}
+.btn-map:hover{background:#8B1A1A;color:#fff}
+
+/* ========== SECTION 4: FAMILY INFO ========== */
+.family-section{background:#F5EAE0;padding:60px 20px;text-align:center;position:relative;overflow:hidden}
+.family-bg-phoenix{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;opacity:0.04;pointer-events:none}
+.family-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:#8B1A1A;font-weight:700;margin-bottom:30px}
+.family-cols{display:flex;flex-direction:column;gap:30px;max-width:600px;margin:0 auto;position:relative;z-index:1}
+@media(min-width:640px){.family-cols{flex-direction:row;gap:40px}}
+.family-col{flex:1}
+.family-label{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:#C8963C;font-weight:600;margin-bottom:8px}
+.family-name{font-family:'Cormorant Garamond',serif;font-size:30px;color:#8B1A1A;font-weight:700;font-style:italic;margin-bottom:10px}
+.family-parents{font-size:14px;color:#3D1010;line-height:1.8}
+.family-divider{width:1px;background:linear-gradient(to bottom,transparent,#C8963C,transparent);display:none}
+@media(min-width:640px){.family-divider{display:block}}
+
+/* ========== SECTION 5: GALLERY ========== */
+.gallery-section{background:#fff;padding:60px 20px;text-align:center}
+.gallery-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:28px;color:#8B1A1A;font-weight:700;margin-bottom:30px}
+.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;max-width:600px;margin:0 auto}
+@media(min-width:640px){.gallery-grid{grid-template-columns:repeat(3,1fr);gap:14px}}
+.gallery-item{aspect-ratio:3/4;border-radius:12px;background:linear-gradient(135deg,#F5EAE0,#E8D5C4);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;overflow:hidden;position:relative}
+.gallery-item:hover{transform:scale(1.03);box-shadow:0 8px 25px rgba(0,0,0,0.12)}
+.gallery-item span{font-family:'Cormorant Garamond',serif;font-size:16px;color:#8B1A1A;opacity:0.5;font-style:italic}
+.gallery-item .photo-num{position:absolute;bottom:10px;right:10px;font-family:'Playfair Display',serif;font-size:12px;color:#8B1A1A;opacity:0.3}
+
+/* Lightbox */
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;display:none;align-items:center;justify-content:center;flex-direction:column;opacity:0;transition:opacity 0.3s}
+.lightbox.active{display:flex;opacity:1}
+.lightbox-content{width:90%;max-width:500px;aspect-ratio:3/4;background:linear-gradient(135deg,#F5EAE0,#E8D5C4);border-radius:16px;display:flex;align-items:center;justify-content:center;position:relative}
+.lightbox-content span{font-family:'Cormorant Garamond',serif;font-size:20px;color:#8B1A1A;opacity:0.5}
+.lightbox-close{position:absolute;top:20px;right:20px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1001}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,0.15);border:none;color:#fff;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1001}
+.lightbox-prev{left:12px}
+.lightbox-next{right:12px}
+
+/* ========== SECTION 6: MUSIC BUTTON ========== */
+.music-btn{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border-radius:50%;background:#8B1A1A;border:none;color:#fff;font-size:11px;font-weight:600;cursor:pointer;z-index:500;box-shadow:0 3px 12px rgba(139,26,26,0.4);display:flex;align-items:center;justify-content:center;transition:transform 0.2s}
+.music-btn.playing{animation:pulse 1.5s ease infinite}
+.music-btn:hover{transform:scale(1.08)}
+@keyframes pulse{0%,100%{box-shadow:0 3px 12px rgba(139,26,26,0.4)}50%{box-shadow:0 3px 20px rgba(139,26,26,0.7),0 0 0 8px rgba(139,26,26,0.15)}}
+.music-icon{width:20px;height:20px}
+
+/* ========== SECTION 7: RSVP ========== */
+.rsvp-section{background:#8B1A1A;padding:60px 20px;text-align:center}
+.rsvp-title{font-family:'Cormorant Garamond',serif;font-size:26px;color:#C8963C;font-weight:700;margin-bottom:8px}
+@media(min-width:640px){.rsvp-title{font-size:30px}}
+.rsvp-sub{color:rgba(255,255,255,0.7);font-size:13px;margin-bottom:28px}
+.rsvp-form{max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.rsvp-input,.rsvp-textarea{width:100%;padding:14px 18px;border:1.5px solid rgba(255,255,255,0.2);border-radius:10px;background:rgba(255,255,255,0.08);color:#fff;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;outline:none;transition:border-color 0.3s}
+.rsvp-input::placeholder,.rsvp-textarea::placeholder{color:rgba(255,255,255,0.4)}
+.rsvp-input:focus,.rsvp-textarea:focus{border-color:#C8963C}
+.rsvp-textarea{min-height:80px;resize:vertical}
+.rsvp-radio-group{display:flex;gap:14px;justify-content:center}
+.rsvp-radio{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,0.85);font-size:14px;cursor:pointer}
+.rsvp-radio input{accent-color:#C8963C;width:16px;height:16px}
+.rsvp-guests{display:flex;align-items:center;gap:10px;justify-content:center;color:rgba(255,255,255,0.85);font-size:14px}
+.rsvp-guests select{padding:8px 14px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#fff;font-size:14px;outline:none}
+.rsvp-guests select option{background:#8B1A1A;color:#fff}
+.btn-rsvp{background:#C8963C;color:#3D1010;border:none;padding:14px 40px;border-radius:50px;font-family:'Be Vietnam Pro',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.3s;letter-spacing:0.5px}
+.btn-rsvp:hover{background:#D4A64C;transform:translateY(-2px)}
+.rsvp-success{display:none;color:#C8963C;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;padding:40px 20px}
+
+/* ========== SECTION 8: GUESTBOOK ========== */
+.guestbook-section{background:#FDFAF7;padding:60px 20px;text-align:center}
+.guestbook-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:#8B1A1A;font-weight:700;margin-bottom:24px}
+.wishes-list{max-width:500px;margin:0 auto 30px;display:flex;flex-direction:column;gap:14px}
+.wish-card{background:#fff;border-radius:14px;padding:18px;text-align:left;box-shadow:0 2px 12px rgba(0,0,0,0.04);border:1px solid rgba(139,26,26,0.06)}
+.wish-header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.wish-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#F5EAE0,#E8D5C4);display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:16px;color:#8B1A1A;font-weight:700;flex-shrink:0}
+.wish-name{font-weight:600;font-size:14px;color:#3D1010}
+.wish-date{font-size:11px;color:#999}
+.wish-text{font-size:14px;color:#555;line-height:1.6}
+.guestbook-form{max-width:500px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.gb-input,.gb-textarea{width:100%;padding:12px 16px;border:1.5px solid rgba(139,26,26,0.15);border-radius:10px;background:#fff;font-family:'Be Vietnam Pro',sans-serif;font-size:14px;color:#3D1010;outline:none;transition:border-color 0.3s}
+.gb-input:focus,.gb-textarea:focus{border-color:#8B1A1A}
+.gb-textarea{min-height:70px;resize:vertical}
+.btn-wish{background:#8B1A1A;color:#fff;border:none;padding:12px 32px;border-radius:50px;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.3s;align-self:center}
+.btn-wish:hover{background:#A02020}
+
+/* ========== SECTION 9: BANK INFO ========== */
+.bank-section{background:#F5EAE0;padding:60px 20px;text-align:center}
+.bank-title{font-family:'Cormorant Garamond',serif;font-size:28px;color:#8B1A1A;font-weight:700;margin-bottom:6px}
+.bank-sub{font-size:13px;color:#666;margin-bottom:28px}
+.bank-cards{display:flex;flex-direction:column;gap:18px;max-width:600px;margin:0 auto}
+@media(min-width:640px){.bank-cards{flex-direction:row;gap:20px}}
+.bank-card{flex:1;background:#fff;border-radius:16px;padding:24px 20px;box-shadow:0 4px 20px rgba(0,0,0,0.05);border:1px solid rgba(139,26,26,0.06)}
+.bank-card .bank-who{font-family:'Cormorant Garamond',serif;font-size:20px;color:#8B1A1A;font-weight:700;margin-bottom:12px}
+.bank-card .bank-name{font-size:14px;color:#C41E3A;font-weight:600;margin-bottom:4px}
+.bank-card .bank-acct{font-family:'Playfair Display',serif;font-size:22px;color:#3D1010;font-weight:600;margin-bottom:2px;letter-spacing:1px}
+.bank-card .bank-holder{font-size:13px;color:#666;margin-bottom:14px}
+.btn-copy{background:#F5EAE0;color:#8B1A1A;border:1.5px solid rgba(139,26,26,0.15);padding:8px 20px;border-radius:50px;font-size:13px;font-weight:500;cursor:pointer;transition:all 0.3s;margin-bottom:14px}
+.btn-copy:hover{background:#8B1A1A;color:#fff}
+.qr-placeholder{width:100px;height:100px;margin:0 auto;background:linear-gradient(135deg,#F5EAE0,#E8D5C4);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#8B1A1A;opacity:0.5}
+
+/* ========== SECTION 10: FOOTER ========== */
+.footer-section{background:#8B1A1A;padding:60px 20px 30px;text-align:center}
+.footer-xi{width:70px;height:70px;margin:0 auto 16px}
+.footer-names{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:30px;color:#C8963C;font-weight:700;margin-bottom:10px}
+@media(min-width:640px){.footer-names{font-size:36px}}
+.footer-msg{color:rgba(255,255,255,0.7);font-size:14px;line-height:1.7;margin-bottom:20px;max-width:400px;margin-left:auto;margin-right:auto}
+.footer-line{width:80px;height:1px;background:#C8963C;margin:0 auto 20px;opacity:0.5}
+.footer-credit{font-size:12px;color:rgba(255,255,255,0.35)}
+.footer-credit a{color:rgba(255,255,255,0.45);text-decoration:none}
+
+/* Toast */
+.toast{position:fixed;bottom:80px;right:20px;background:#333;color:#fff;padding:12px 22px;border-radius:10px;font-size:13px;z-index:2000;opacity:0;transform:translateY(20px);transition:all 0.3s;pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+<!-- ========== SECTION 1: ENVELOPE ========== -->
+<section class="envelope" id="envelope">
+  <!-- Corner decorations -->
+  <svg class="envelope-corner-tl" viewBox="0 0 80 80" fill="none"><path d="M5 75C5 75 5 30 5 15C5 8 10 5 15 5C30 5 75 5 75 5" stroke="#8B1A1A" stroke-width="1.5" fill="none"/><path d="M5 60C5 60 5 25 5 18C5 13 9 10 14 10C25 10 60 10 60 10" stroke="#8B1A1A" stroke-width="1" fill="none" opacity="0.5"/><circle cx="5" cy="75" r="3" fill="#C8963C" opacity="0.6"/><path d="M10 5C10 5 12 12 10 15C8 18 5 18 5 18" stroke="#8B1A1A" stroke-width="1" fill="none" opacity="0.4"/><path d="M5 5Q20 5 20 20" stroke="#C8963C" stroke-width="0.8" fill="none" opacity="0.4"/></svg>
+  <svg class="envelope-corner-tr" viewBox="0 0 80 80" fill="none"><path d="M5 75C5 75 5 30 5 15C5 8 10 5 15 5C30 5 75 5 75 5" stroke="#8B1A1A" stroke-width="1.5" fill="none"/><path d="M5 60C5 60 5 25 5 18C5 13 9 10 14 10C25 10 60 10 60 10" stroke="#8B1A1A" stroke-width="1" fill="none" opacity="0.5"/><circle cx="5" cy="75" r="3" fill="#C8963C" opacity="0.6"/><path d="M5 5Q20 5 20 20" stroke="#C8963C" stroke-width="0.8" fill="none" opacity="0.4"/></svg>
+  <svg class="envelope-corner-bl" viewBox="0 0 80 80" fill="none"><path d="M5 75C5 75 5 30 5 15C5 8 10 5 15 5C30 5 75 5 75 5" stroke="#8B1A1A" stroke-width="1.5" fill="none"/><path d="M5 60C5 60 5 25 5 18C5 13 9 10 14 10C25 10 60 10 60 10" stroke="#8B1A1A" stroke-width="1" fill="none" opacity="0.5"/><circle cx="5" cy="75" r="3" fill="#C8963C" opacity="0.6"/></svg>
+  <svg class="envelope-corner-br" viewBox="0 0 80 80" fill="none"><path d="M5 75C5 75 5 30 5 15C5 8 10 5 15 5C30 5 75 5 75 5" stroke="#8B1A1A" stroke-width="1.5" fill="none"/><path d="M5 60C5 60 5 25 5 18C5 13 9 10 14 10C25 10 60 10 60 10" stroke="#8B1A1A" stroke-width="1" fill="none" opacity="0.5"/><circle cx="5" cy="75" r="3" fill="#C8963C" opacity="0.6"/></svg>
+
+  <!-- Cherry blossom branch top-right -->
+  <svg class="cherry-blossom" viewBox="0 0 200 200" fill="none">
+    <path d="M200 0C180 20 140 40 120 70C110 88 105 100 100 120C95 140 92 165 90 200" stroke="#8B1A1A" stroke-width="2" fill="none"/>
+    <path d="M160 25C150 30 145 38 148 42C152 46 160 44 165 38C170 32 168 24 160 25Z" fill="#C41E3A" opacity="0.6"/>
+    <path d="M140 18C134 24 133 32 137 35C141 38 148 34 150 27C152 20 147 14 140 18Z" fill="#C41E3A" opacity="0.5"/>
+    <path d="M135 50C128 52 124 59 127 64C130 69 138 68 142 62C146 56 143 48 135 50Z" fill="#C41E3A" opacity="0.6"/>
+    <path d="M125 42C120 46 118 54 122 57C126 60 132 56 134 49C136 42 131 38 125 42Z" fill="#C41E3A" opacity="0.4"/>
+    <path d="M118 78C112 80 108 87 111 92C114 97 122 96 126 90C130 84 126 76 118 78Z" fill="#C41E3A" opacity="0.5"/>
+    <path d="M108 100C102 103 100 110 103 114C107 118 114 115 117 108C119 101 114 97 108 100Z" fill="#C41E3A" opacity="0.4"/>
+    <circle cx="148" cy="35" r="2" fill="#C8963C" opacity="0.7"/>
+    <circle cx="127" cy="60" r="2" fill="#C8963C" opacity="0.6"/>
+    <circle cx="112" cy="88" r="1.5" fill="#C8963C" opacity="0.5"/>
+    <path d="M170 10C165 15 155 20 148 30" stroke="#8B1A1A" stroke-width="1" fill="none" opacity="0.5"/>
+    <path d="M155 40C145 45 135 55 130 68" stroke="#8B1A1A" stroke-width="1" fill="none" opacity="0.4"/>
+  </svg>
+
+  <!-- Double Happiness -->
+  <svg class="double-happiness-circle" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="46" fill="none" stroke="#C8963C" stroke-width="2"/>
+    <circle cx="50" cy="50" r="42" fill="none" stroke="#C8963C" stroke-width="0.5" opacity="0.4"/>
+    <text x="50" y="58" text-anchor="middle" font-size="42" fill="#8B1A1A" font-weight="700" font-family="serif">囍</text>
+  </svg>
+
+  <!-- Phoenix pair -->
+  <div class="phoenix-pair">
+    <!-- Left Phoenix -->
+    <svg class="phoenix-svg" viewBox="0 0 240 320" fill="none">
+      <!-- Body -->
+      <ellipse cx="120" cy="140" rx="32" ry="50" fill="#8B1A1A" opacity="0.9"/>
+      <ellipse cx="120" cy="140" rx="26" ry="44" fill="none" stroke="#C8963C" stroke-width="0.5" opacity="0.3"/>
+      <!-- Neck -->
+      <path d="M120 90C120 90 118 70 115 58C112 46 108 38 105 32" stroke="#8B1A1A" stroke-width="8" stroke-linecap="round" fill="none"/>
+      <path d="M122 90C122 88 124 72 126 62C128 52 125 42 118 34" stroke="#8B1A1A" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <!-- Head -->
+      <ellipse cx="105" cy="30" rx="14" ry="11" fill="#8B1A1A" transform="rotate(-15,105,30)"/>
+      <ellipse cx="108" cy="28" rx="10" ry="8" fill="#C41E3A" opacity="0.4" transform="rotate(-15,108,28)"/>
+      <!-- Beak -->
+      <path d="M91 26L82 23L84 28L91 28Z" fill="#C8963C"/>
+      <!-- Eye -->
+      <circle cx="100" cy="26" r="2.5" fill="#F5EAE0"/>
+      <circle cx="100" cy="26" r="1.2" fill="#3D1010"/>
+      <!-- Crown/Crest -->
+      <path d="M108 20C110 14 112 8 108 2" stroke="#8B1A1A" stroke-width="2" fill="none"/>
+      <path d="M112 20C115 12 118 6 116 0" stroke="#8B1A1A" stroke-width="1.5" fill="none"/>
+      <path d="M105 22C104 16 100 10 102 4" stroke="#8B1A1A" stroke-width="1.5" fill="none"/>
+      <circle cx="108" cy="2" r="2.5" fill="#C41E3A"/>
+      <circle cx="116" cy="0" r="2" fill="#C41E3A"/>
+      <circle cx="102" cy="4" r="2" fill="#C41E3A"/>
+      <!-- Left Wing (spread) -->
+      <path d="M88 120C70 100 48 90 30 95C22 97 15 105 20 115C28 130 50 130 65 125" fill="#8B1A1A"/>
+      <path d="M88 130C65 118 42 112 25 120C18 124 14 132 20 140C30 152 55 148 70 140" fill="#8B1A1A" opacity="0.85"/>
+      <path d="M90 142C72 135 52 132 38 140C32 144 30 152 36 158C46 167 68 160 80 150" fill="#8B1A1A" opacity="0.7"/>
+      <!-- Wing feather details -->
+      <path d="M30 95C40 100 55 108 70 115" stroke="#C8963C" stroke-width="0.5" opacity="0.4" fill="none"/>
+      <path d="M25 120C38 124 55 128 70 130" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <path d="M38 140C50 142 65 144 78 142" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <!-- Right Wing -->
+      <path d="M152 120C170 100 192 90 210 95C218 97 225 105 220 115C212 130 190 130 175 125" fill="#8B1A1A"/>
+      <path d="M152 130C175 118 198 112 215 120C222 124 226 132 220 140C210 152 185 148 170 140" fill="#8B1A1A" opacity="0.85"/>
+      <path d="M150 142C168 135 188 132 202 140C208 144 210 152 204 158C194 167 172 160 160 150" fill="#8B1A1A" opacity="0.7"/>
+      <!-- Right wing feather details -->
+      <path d="M210 95C200 100 185 108 170 115" stroke="#C8963C" stroke-width="0.5" opacity="0.4" fill="none"/>
+      <path d="M215 120C202 124 185 128 170 130" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <path d="M202 140C190 142 175 144 162 142" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <!-- Tail feathers (long, flowing) -->
+      <path d="M120 190C118 210 110 245 95 275C85 295 70 310 55 318" stroke="#8B1A1A" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M120 190C122 215 128 250 140 278C148 295 160 308 175 315" stroke="#8B1A1A" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M118 188C114 218 100 260 80 295C72 308 60 316 48 320" stroke="#8B1A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M122 188C126 220 138 265 155 295C165 310 178 316 190 318" stroke="#8B1A1A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <!-- Tail feather curls -->
+      <path d="M55 318C48 316 42 318 40 322" stroke="#8B1A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M175 315C182 314 188 316 190 320" stroke="#8B1A1A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M48 320C42 318 36 320 35 324" stroke="#8B1A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path d="M190 318C196 316 200 318 202 322" stroke="#8B1A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <!-- Tail detail lines -->
+      <path d="M110 220C105 230 98 250 92 268" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <path d="M130 225C135 238 142 258 148 275" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <!-- Body scales/feather pattern -->
+      <path d="M108 125C112 128 120 130 128 128 132 125" stroke="#C8963C" stroke-width="0.5" opacity="0.25" fill="none"/>
+      <path d="M106 135C112 138 120 140 128 138 134 135" stroke="#C8963C" stroke-width="0.5" opacity="0.25" fill="none"/>
+      <path d="M108 145C112 148 120 150 128 148 132 145" stroke="#C8963C" stroke-width="0.5" opacity="0.25" fill="none"/>
+      <path d="M110 155C114 157 120 158 126 157 130 155" stroke="#C8963C" stroke-width="0.5" opacity="0.25" fill="none"/>
+      <!-- Feet -->
+      <path d="M110 188C108 195 104 200 100 204" stroke="#8B1A1A" stroke-width="2" fill="none"/>
+      <path d="M100 204L95 210M100 204L98 212M100 204L103 211" stroke="#8B1A1A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <path d="M130 188C132 195 136 200 140 204" stroke="#8B1A1A" stroke-width="2" fill="none"/>
+      <path d="M140 204L135 210M140 204L138 212M140 204L143 211" stroke="#8B1A1A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    </svg>
+    <!-- Right Phoenix (mirrored) -->
+    <svg class="phoenix-svg phoenix-right" viewBox="0 0 240 320" fill="none">
+      <ellipse cx="120" cy="140" rx="32" ry="50" fill="#8B1A1A" opacity="0.9"/>
+      <ellipse cx="120" cy="140" rx="26" ry="44" fill="none" stroke="#C8963C" stroke-width="0.5" opacity="0.3"/>
+      <path d="M120 90C120 90 118 70 115 58C112 46 108 38 105 32" stroke="#8B1A1A" stroke-width="8" stroke-linecap="round" fill="none"/>
+      <path d="M122 90C122 88 124 72 126 62C128 52 125 42 118 34" stroke="#8B1A1A" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="105" cy="30" rx="14" ry="11" fill="#8B1A1A" transform="rotate(-15,105,30)"/>
+      <ellipse cx="108" cy="28" rx="10" ry="8" fill="#C41E3A" opacity="0.4" transform="rotate(-15,108,28)"/>
+      <path d="M91 26L82 23L84 28L91 28Z" fill="#C8963C"/>
+      <circle cx="100" cy="26" r="2.5" fill="#F5EAE0"/>
+      <circle cx="100" cy="26" r="1.2" fill="#3D1010"/>
+      <path d="M108 20C110 14 112 8 108 2" stroke="#8B1A1A" stroke-width="2" fill="none"/>
+      <path d="M112 20C115 12 118 6 116 0" stroke="#8B1A1A" stroke-width="1.5" fill="none"/>
+      <path d="M105 22C104 16 100 10 102 4" stroke="#8B1A1A" stroke-width="1.5" fill="none"/>
+      <circle cx="108" cy="2" r="2.5" fill="#C41E3A"/>
+      <circle cx="116" cy="0" r="2" fill="#C41E3A"/>
+      <circle cx="102" cy="4" r="2" fill="#C41E3A"/>
+      <path d="M88 120C70 100 48 90 30 95C22 97 15 105 20 115C28 130 50 130 65 125" fill="#8B1A1A"/>
+      <path d="M88 130C65 118 42 112 25 120C18 124 14 132 20 140C30 152 55 148 70 140" fill="#8B1A1A" opacity="0.85"/>
+      <path d="M90 142C72 135 52 132 38 140C32 144 30 152 36 158C46 167 68 160 80 150" fill="#8B1A1A" opacity="0.7"/>
+      <path d="M30 95C40 100 55 108 70 115" stroke="#C8963C" stroke-width="0.5" opacity="0.4" fill="none"/>
+      <path d="M25 120C38 124 55 128 70 130" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <path d="M38 140C50 142 65 144 78 142" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <path d="M152 120C170 100 192 90 210 95C218 97 225 105 220 115C212 130 190 130 175 125" fill="#8B1A1A"/>
+      <path d="M152 130C175 118 198 112 215 120C222 124 226 132 220 140C210 152 185 148 170 140" fill="#8B1A1A" opacity="0.85"/>
+      <path d="M150 142C168 135 188 132 202 140C208 144 210 152 204 158C194 167 172 160 160 150" fill="#8B1A1A" opacity="0.7"/>
+      <path d="M210 95C200 100 185 108 170 115" stroke="#C8963C" stroke-width="0.5" opacity="0.4" fill="none"/>
+      <path d="M215 120C202 124 185 128 170 130" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <path d="M202 140C190 142 175 144 162 142" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <path d="M120 190C118 210 110 245 95 275C85 295 70 310 55 318" stroke="#8B1A1A" stroke-width="5" stroke-linecap="round" fill="none"/>
+      <path d="M120 190C122 215 128 250 140 278C148 295 160 308 175 315" stroke="#8B1A1A" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <path d="M118 188C114 218 100 260 80 295C72 308 60 316 48 320" stroke="#8B1A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M122 188C126 220 138 265 155 295C165 310 178 316 190 318" stroke="#8B1A1A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M55 318C48 316 42 318 40 322" stroke="#8B1A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M175 315C182 314 188 316 190 320" stroke="#8B1A1A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M48 320C42 318 36 320 35 324" stroke="#8B1A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path d="M190 318C196 316 200 318 202 322" stroke="#8B1A1A" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <path d="M110 220C105 230 98 250 92 268" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <path d="M130 225C135 238 142 258 148 275" stroke="#C8963C" stroke-width="0.5" opacity="0.3" fill="none"/>
+      <path d="M108 125C112 128 120 130 128 128 132 125" stroke="#C8963C" stroke-width="0.5" opacity="0.25" fill="none"/>
+      <path d="M106 135C112 138 120 140 128 138 134 135" stroke="#C8963C" stroke-width="0.5" opacity="0.25" fill="none"/>
+      <path d="M108 145C112 148 120 150 128 148 132 145" stroke="#C8963C" stroke-width="0.5" opacity="0.25" fill="none"/>
+      <path d="M110 155C114 157 120 158 126 157 130 155" stroke="#C8963C" stroke-width="0.5" opacity="0.25" fill="none"/>
+      <path d="M110 188C108 195 104 200 100 204" stroke="#8B1A1A" stroke-width="2" fill="none"/>
+      <path d="M100 204L95 210M100 204L98 212M100 204L103 211" stroke="#8B1A1A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <path d="M130 188C132 195 136 200 140 204" stroke="#8B1A1A" stroke-width="2" fill="none"/>
+      <path d="M140 204L135 210M140 204L138 212M140 204L143 211" stroke="#8B1A1A" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
+
+  <!-- Names -->
+  <div class="envelope-names">
+    <span class="name">Thị Nhí</span>
+    <span class="amp">&amp;</span>
+    <span class="name">Minh Lên</span>
+  </div>
+
+  <!-- Divider -->
+  <svg class="envelope-divider" width="180" height="16" viewBox="0 0 180 16"><path d="M0 8H70C75 8 78 4 82 4C86 4 86 12 90 12C94 12 94 4 98 4C102 4 105 8 110 8H180" stroke="#C8963C" stroke-width="1" fill="none"/><circle cx="90" cy="8" r="2" fill="#C8963C"/></svg>
+
+  <p class="envelope-date playfair">24 tháng 3, 2026</p>
+  <p class="envelope-invite cormorant">Thân Mời</p>
+  <button class="btn-open" id="btnOpen">Mở thiệp</button>
+
+  <!-- Falling petals container -->
+  <div id="petalsContainer"></div>
+</section>
+
+<!-- ========== SECTION 2: COUNTDOWN ========== -->
+<section class="countdown-section reveal" id="countdown">
+  <h2 class="countdown-title">Đếm ngược đến ngày trọng đại</h2>
+  <div class="countdown-row">
+    <div class="countdown-box">
+      <span class="countdown-num playfair" id="cdDays">00</span>
+      <span class="countdown-label">Ngày</span>
+    </div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-box">
+      <span class="countdown-num playfair" id="cdHours">00</span>
+      <span class="countdown-label">Giờ</span>
+    </div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-box">
+      <span class="countdown-num playfair" id="cdMins">00</span>
+      <span class="countdown-label">Phút</span>
+    </div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-box">
+      <span class="countdown-num playfair" id="cdSecs">00</span>
+      <span class="countdown-label">Giây</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 3: CEREMONY INFO ========== -->
+<section class="ceremony-section reveal">
+  <svg class="section-ornament" viewBox="0 0 200 20"><path d="M0 10H60" stroke="#C8963C" stroke-width="0.8"/><path d="M65 10C70 4 75 4 80 10C85 16 90 16 95 10C100 4 105 4 110 10C115 16 120 16 125 10C130 4 135 4 140 10" stroke="#8B1A1A" stroke-width="1.2" fill="none"/><path d="M145 10H200" stroke="#C8963C" stroke-width="0.8"/><circle cx="100" cy="10" r="2" fill="#C8963C"/></svg>
+  <h2 class="ceremony-title cormorant"><span style="font-size:24px;margin-right:8px">囍</span>Lễ Cưới</h2>
+  <p class="ceremony-subtitle">Trân trọng kính mời quý khách đến dự</p>
+  <div class="ceremony-cards">
+    <div class="ceremony-card">
+      <h3 class="cormorant">Lễ Gia Tiên</h3>
+      <p class="time playfair">09:00 <span style="font-size:16px">Sáng</span></p>
+      <p class="date-text">Thứ Ba, 24/03/2026</p>
+      <p class="venue-text">Nhà hàng Tiệc Cưới Hoàng Gia<br>123 Đường Lê Lợi, Quận 1, TP.HCM</p>
+      <a href="https://maps.google.com/?q=123+Đường+Lê+Lợi+Quận+1+TPHCM" target="_blank" rel="noopener" class="btn-map">Xem bản đồ</a>
+    </div>
+    <div class="ceremony-card">
+      <h3 class="cormorant">Tiệc Cưới</h3>
+      <p class="time playfair">11:00 <span style="font-size:16px">Sáng</span></p>
+      <p class="date-text">Thứ Ba, 24/03/2026</p>
+      <p class="venue-text">Nhà hàng Tiệc Cưới Hoàng Gia<br>123 Đường Lê Lợi, Quận 1, TP.HCM</p>
+      <a href="https://maps.google.com/?q=123+Đường+Lê+Lợi+Quận+1+TPHCM" target="_blank" rel="noopener" class="btn-map">Xem bản đồ</a>
+    </div>
+  </div>
+  <svg class="section-ornament" style="margin-top:20px" viewBox="0 0 200 20"><path d="M0 10H60" stroke="#C8963C" stroke-width="0.8"/><path d="M65 10C70 4 75 4 80 10C85 16 90 16 95 10C100 4 105 4 110 10C115 16 120 16 125 10C130 4 135 4 140 10" stroke="#8B1A1A" stroke-width="1.2" fill="none"/><path d="M145 10H200" stroke="#C8963C" stroke-width="0.8"/><circle cx="100" cy="10" r="2" fill="#C8963C"/></svg>
+</section>
+
+<!-- ========== SECTION 4: FAMILY INFO ========== -->
+<section class="family-section reveal">
+  <!-- Background phoenix -->
+  <svg class="family-bg-phoenix" viewBox="0 0 240 320" fill="none">
+    <ellipse cx="120" cy="140" rx="32" ry="50" fill="#8B1A1A"/>
+    <path d="M120 90C120 90 118 70 115 58C112 46 108 38 105 32" stroke="#8B1A1A" stroke-width="8" stroke-linecap="round" fill="none"/>
+    <ellipse cx="105" cy="30" rx="14" ry="11" fill="#8B1A1A" transform="rotate(-15,105,30)"/>
+    <path d="M88 120C70 100 48 90 30 95C22 97 15 105 20 115C28 130 50 130 65 125" fill="#8B1A1A"/>
+    <path d="M88 130C65 118 42 112 25 120C18 124 14 132 20 140C30 152 55 148 70 140" fill="#8B1A1A"/>
+    <path d="M152 120C170 100 192 90 210 95C218 97 225 105 220 115C212 130 190 130 175 125" fill="#8B1A1A"/>
+    <path d="M152 130C175 118 198 112 215 120C222 124 226 132 220 140C210 152 185 148 170 140" fill="#8B1A1A"/>
+    <path d="M120 190C118 210 110 245 95 275C85 295 70 310 55 318" stroke="#8B1A1A" stroke-width="5" stroke-linecap="round" fill="none"/>
+    <path d="M120 190C122 215 128 250 140 278C148 295 160 308 175 315" stroke="#8B1A1A" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M118 188C114 218 100 260 80 295C72 308 60 316 48 320" stroke="#8B1A1A" stroke-width="3" stroke-linecap="round" fill="none"/>
+  </svg>
+  <h2 class="family-title cormorant">Hai Họ Thông Gia</h2>
+  <div class="family-cols">
+    <div class="family-col">
+      <p class="family-label">Nhà Trai</p>
+      <p class="family-name cormorant">Minh Lên</p>
+      <p class="family-parents">
+        Con trai của<br>
+        <strong>Ông Nguyễn Văn A</strong><br>
+        &amp; <strong>Bà Trần Thị B</strong>
+      </p>
+    </div>
+    <div class="family-divider"></div>
+    <div class="family-col">
+      <p class="family-label">Nhà Gái</p>
+      <p class="family-name cormorant">Thị Nhí</p>
+      <p class="family-parents">
+        Con gái của<br>
+        <strong>Ông Lê Văn C</strong><br>
+        &amp; <strong>Bà Phạm Thị D</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 5: GALLERY ========== -->
+<section class="gallery-section reveal">
+  <h2 class="gallery-title cormorant">Khoảnh Khắc Của Chúng Tôi</h2>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="gallery-item" data-index="0"><span>Ảnh cưới</span><span class="photo-num">01</span></div>
+    <div class="gallery-item" data-index="1"><span>Ảnh cưới</span><span class="photo-num">02</span></div>
+    <div class="gallery-item" data-index="2"><span>Ảnh cưới</span><span class="photo-num">03</span></div>
+    <div class="gallery-item" data-index="3"><span>Ảnh cưới</span><span class="photo-num">04</span></div>
+    <div class="gallery-item" data-index="4"><span>Ảnh cưới</span><span class="photo-num">05</span></div>
+    <div class="gallery-item" data-index="5"><span>Ảnh cưới</span><span class="photo-num">06</span></div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lbPrev">&#8249;</button>
+  <button class="lightbox-nav lightbox-next" id="lbNext">&#8250;</button>
+  <div class="lightbox-content" id="lbContent">
+    <span>Ảnh cưới</span>
+  </div>
+</div>
+
+<!-- ========== SECTION 7: RSVP ========== -->
+<section class="rsvp-section reveal">
+  <h2 class="rsvp-title cormorant">Xác Nhận Tham Dự</h2>
+  <p class="rsvp-sub">Vui lòng xác nhận trước ngày 17/03/2026</p>
+  <form class="rsvp-form" id="rsvpForm">
+    <input class="rsvp-input" type="text" placeholder="Họ và tên" required>
+    <input class="rsvp-input" type="tel" placeholder="Số điện thoại" required>
+    <div class="rsvp-radio-group">
+      <label class="rsvp-radio"><input type="radio" name="attend" value="yes" checked> Tham dự</label>
+      <label class="rsvp-radio"><input type="radio" name="attend" value="no"> Không tham dự</label>
+    </div>
+    <div class="rsvp-guests" id="guestsRow">
+      <span>Số khách:</span>
+      <select id="guestCount">
+        <option value="1">1</option>
+        <option value="2" selected>2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+    </div>
+    <textarea class="rsvp-textarea" placeholder="Lời chúc đến cô dâu & chú rể..." rows="3"></textarea>
+    <button type="submit" class="btn-rsvp">Gửi Xác Nhận</button>
+  </form>
+  <div class="rsvp-success" id="rsvpSuccess">
+    <p>Cảm ơn bạn đã xác nhận!</p>
+    <p style="font-size:16px;margin-top:8px;color:rgba(255,255,255,0.6)">Chúng tôi rất mong được gặp bạn trong ngày trọng đại.</p>
+  </div>
+</section>
+
+<!-- ========== SECTION 8: GUESTBOOK ========== -->
+<section class="guestbook-section reveal">
+  <h2 class="guestbook-title cormorant">Lời Chúc Của Bạn</h2>
+  <div class="wishes-list" id="wishesList">
+    <div class="wish-card">
+      <div class="wish-header">
+        <div class="wish-avatar">H</div>
+        <div><p class="wish-name">Hồng Anh</p><p class="wish-date">20/03/2026</p></div>
+      </div>
+      <p class="wish-text">Chúc hai bạn trăm năm hạnh phúc, sớm có tin vui nhé! 🎉</p>
+    </div>
+    <div class="wish-card">
+      <div class="wish-header">
+        <div class="wish-avatar">T</div>
+        <div><p class="wish-name">Tuấn Kiệt</p><p class="wish-date">19/03/2026</p></div>
+      </div>
+      <p class="wish-text">Happy wedding! Chúc anh chị luôn yêu thương và bên nhau mãi mãi.</p>
+    </div>
+    <div class="wish-card">
+      <div class="wish-header">
+        <div class="wish-avatar">M</div>
+        <div><p class="wish-name">Mai Phương</p><p class="wish-date">18/03/2026</p></div>
+      </div>
+      <p class="wish-text">Đám cưới đẹp quá! Chúc hai bạn hạnh phúc viên mãn, vạn sự như ý.</p>
+    </div>
+  </div>
+  <form class="guestbook-form" id="guestbookForm">
+    <input class="gb-input" type="text" placeholder="Tên của bạn" required>
+    <textarea class="gb-textarea" placeholder="Viết lời chúc..." rows="3" required></textarea>
+    <button type="submit" class="btn-wish">Gửi Lời Chúc</button>
+  </form>
+</section>
+
+<!-- ========== SECTION 9: BANK INFO ========== -->
+<section class="bank-section reveal">
+  <h2 class="bank-title cormorant">Mừng Cưới</h2>
+  <p class="bank-sub">Thay cho phong bì truyền thống, quý khách có thể chuyển khoản qua tài khoản ngân hàng.</p>
+  <div class="bank-cards">
+    <div class="bank-card">
+      <p class="bank-who cormorant">Chú Rể</p>
+      <p class="bank-name">Vietcombank</p>
+      <p class="bank-acct">1234567890</p>
+      <p class="bank-holder">NGUYEN MINH LEN</p>
+      <button class="btn-copy" onclick="copyBank('1234567890')">Sao chép STK</button>
+      <div class="qr-placeholder">
+        <svg width="60" height="60" viewBox="0 0 60 60"><rect x="5" y="5" width="18" height="18" rx="2" fill="none" stroke="#8B1A1A" stroke-width="2"/><rect x="9" y="9" width="10" height="10" rx="1" fill="#8B1A1A" opacity="0.3"/><rect x="37" y="5" width="18" height="18" rx="2" fill="none" stroke="#8B1A1A" stroke-width="2"/><rect x="41" y="9" width="10" height="10" rx="1" fill="#8B1A1A" opacity="0.3"/><rect x="5" y="37" width="18" height="18" rx="2" fill="none" stroke="#8B1A1A" stroke-width="2"/><rect x="9" y="41" width="10" height="10" rx="1" fill="#8B1A1A" opacity="0.3"/><rect x="28" y="28" width="4" height="4" fill="#8B1A1A" opacity="0.3"/><rect x="37" y="37" width="4" height="4" fill="#8B1A1A" opacity="0.3"/><rect x="45" y="37" width="4" height="4" fill="#8B1A1A" opacity="0.3"/><rect x="37" y="45" width="4" height="4" fill="#8B1A1A" opacity="0.3"/><rect x="45" y="45" width="10" height="10" rx="1" fill="#8B1A1A" opacity="0.2"/><text x="30" y="34" text-anchor="middle" font-size="5" fill="#8B1A1A" opacity="0.5">QR Code</text></svg>
+      </div>
+    </div>
+    <div class="bank-card">
+      <p class="bank-who cormorant">Cô Dâu</p>
+      <p class="bank-name">Techcombank</p>
+      <p class="bank-acct">0987654321</p>
+      <p class="bank-holder">LE THI NHI</p>
+      <button class="btn-copy" onclick="copyBank('0987654321')">Sao chép STK</button>
+      <div class="qr-placeholder">
+        <svg width="60" height="60" viewBox="0 0 60 60"><rect x="5" y="5" width="18" height="18" rx="2" fill="none" stroke="#8B1A1A" stroke-width="2"/><rect x="9" y="9" width="10" height="10" rx="1" fill="#8B1A1A" opacity="0.3"/><rect x="37" y="5" width="18" height="18" rx="2" fill="none" stroke="#8B1A1A" stroke-width="2"/><rect x="41" y="9" width="10" height="10" rx="1" fill="#8B1A1A" opacity="0.3"/><rect x="5" y="37" width="18" height="18" rx="2" fill="none" stroke="#8B1A1A" stroke-width="2"/><rect x="9" y="41" width="10" height="10" rx="1" fill="#8B1A1A" opacity="0.3"/><rect x="28" y="28" width="4" height="4" fill="#8B1A1A" opacity="0.3"/><rect x="37" y="37" width="4" height="4" fill="#8B1A1A" opacity="0.3"/><rect x="45" y="37" width="4" height="4" fill="#8B1A1A" opacity="0.3"/><rect x="37" y="45" width="4" height="4" fill="#8B1A1A" opacity="0.3"/><rect x="45" y="45" width="10" height="10" rx="1" fill="#8B1A1A" opacity="0.2"/><text x="30" y="34" text-anchor="middle" font-size="5" fill="#8B1A1A" opacity="0.5">QR Code</text></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 10: FOOTER ========== -->
+<section class="footer-section">
+  <svg class="footer-xi" viewBox="0 0 100 100">
+    <text x="50" y="62" text-anchor="middle" font-size="56" fill="#C8963C" font-weight="700" font-family="serif">囍</text>
+  </svg>
+  <p class="footer-names cormorant">Minh Lên & Thị Nhí</p>
+  <p class="footer-msg">Sự hiện diện của quý khách là niềm vinh hạnh lớn lao cho gia đình chúng tôi. Xin chân thành cảm ơn!</p>
+  <div class="footer-line"></div>
+  <p class="footer-credit">Được tạo bởi <a href="https://juntech.vn" target="_blank" rel="noopener">JunTech</a> — juntech.vn</p>
+</section>
+
+</div><!-- /page-wrapper -->
+
+<!-- ========== SECTION 6: MUSIC BUTTON ========== -->
+<button class="music-btn" id="musicBtn" aria-label="Bật/tắt nhạc">
+  <svg class="music-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 18V5l12-2v13"/>
+    <circle cx="6" cy="18" r="3" fill="currentColor"/>
+    <circle cx="18" cy="16" r="3" fill="currentColor"/>
+  </svg>
+</button>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ===== Falling Petals ===== */
+  var petalsContainer = document.getElementById('petalsContainer');
+  for(var i=0;i<18;i++){
+    var petal = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    petal.setAttribute('class','petal');
+    petal.setAttribute('viewBox','0 0 12 16');
+    petal.setAttribute('width', (8 + Math.random()*6) + 'px');
+    petal.innerHTML='<ellipse cx="6" cy="8" rx="5" ry="7" fill="#C41E3A" opacity="0.6"/>';
+    petal.style.left = Math.random()*100 + '%';
+    petal.style.animationDuration = (5 + Math.random()*6) + 's';
+    petal.style.animationDelay = (Math.random()*8) + 's';
+    petalsContainer.appendChild(petal);
+  }
+
+  /* ===== Envelope Open ===== */
+  var envelope = document.getElementById('envelope');
+  var btnOpen = document.getElementById('btnOpen');
+  btnOpen.addEventListener('click', function(){
+    envelope.classList.add('hidden');
+    setTimeout(function(){
+      envelope.style.display = 'none';
+      window.scrollTo({top:0, behavior:'smooth'});
+    }, 800);
+  });
+
+  /* ===== Countdown ===== */
+  var weddingDate = new Date('2026-03-24T09:00:00+07:00').getTime();
+  var cdDays = document.getElementById('cdDays');
+  var cdHours = document.getElementById('cdHours');
+  var cdMins = document.getElementById('cdMins');
+  var cdSecs = document.getElementById('cdSecs');
+
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+
+  function updateCountdown(){
+    var now = Date.now();
+    var diff = weddingDate - now;
+    if(diff <= 0){
+      cdDays.textContent = '00';
+      cdHours.textContent = '00';
+      cdMins.textContent = '00';
+      cdSecs.textContent = '00';
+      return;
+    }
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    cdDays.textContent = pad(d);
+    cdHours.textContent = pad(h);
+    cdMins.textContent = pad(m);
+    cdSecs.textContent = pad(s);
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* ===== Scroll Reveal ===== */
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold: 0.15});
+  reveals.forEach(function(el){ observer.observe(el); });
+
+  /* ===== Lightbox ===== */
+  var lightbox = document.getElementById('lightbox');
+  var lbContent = document.getElementById('lbContent');
+  var lbClose = document.getElementById('lbClose');
+  var lbPrev = document.getElementById('lbPrev');
+  var lbNext = document.getElementById('lbNext');
+  var galleryItems = document.querySelectorAll('.gallery-item');
+  var currentIndex = 0;
+  var totalPhotos = galleryItems.length;
+
+  function openLightbox(index){
+    currentIndex = index;
+    updateLightboxContent();
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function updateLightboxContent(){
+    lbContent.innerHTML = '<span>Ảnh cưới ' + pad(currentIndex+1) + '</span>';
+  }
+
+  galleryItems.forEach(function(item){
+    item.addEventListener('click', function(){
+      openLightbox(parseInt(this.dataset.index));
+    });
+  });
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', function(e){
+    if(e.target === lightbox) closeLightbox();
+  });
+  lbPrev.addEventListener('click', function(e){
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + totalPhotos) % totalPhotos;
+    updateLightboxContent();
+  });
+  lbNext.addEventListener('click', function(e){
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % totalPhotos;
+    updateLightboxContent();
+  });
+
+  /* ===== Music Button ===== */
+  var musicBtn = document.getElementById('musicBtn');
+  var isPlaying = false;
+  musicBtn.addEventListener('click', function(){
+    isPlaying = !isPlaying;
+    if(isPlaying){
+      musicBtn.classList.add('playing');
+    } else {
+      musicBtn.classList.remove('playing');
+    }
+  });
+
+  /* ===== RSVP Form ===== */
+  var rsvpForm = document.getElementById('rsvpForm');
+  var rsvpSuccess = document.getElementById('rsvpSuccess');
+  var guestsRow = document.getElementById('guestsRow');
+
+  // Toggle guests row based on attendance
+  rsvpForm.querySelectorAll('input[name="attend"]').forEach(function(radio){
+    radio.addEventListener('change', function(){
+      guestsRow.style.display = this.value === 'yes' ? 'flex' : 'none';
+    });
+  });
+
+  rsvpForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    rsvpForm.style.display = 'none';
+    rsvpSuccess.style.display = 'block';
+    showToast('Xác nhận thành công!');
+  });
+
+  /* ===== Guestbook ===== */
+  var guestbookForm = document.getElementById('guestbookForm');
+  var wishesList = document.getElementById('wishesList');
+
+  guestbookForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nameInput = guestbookForm.querySelector('.gb-input');
+    var textInput = guestbookForm.querySelector('.gb-textarea');
+    var name = nameInput.value.trim();
+    var text = textInput.value.trim();
+    if(!name || !text) return;
+
+    var today = new Date();
+    var dateStr = pad(today.getDate()) + '/' + pad(today.getMonth()+1) + '/' + today.getFullYear();
+    var initial = name.charAt(0).toUpperCase();
+
+    var card = document.createElement('div');
+    card.className = 'wish-card';
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(-10px)';
+    card.innerHTML = '<div class="wish-header"><div class="wish-avatar">' + initial + '</div><div><p class="wish-name">' + escapeHtml(name) + '</p><p class="wish-date">' + dateStr + '</p></div></div><p class="wish-text">' + escapeHtml(text) + '</p>';
+    wishesList.insertBefore(card, wishesList.firstChild);
+
+    // Animate in
+    requestAnimationFrame(function(){
+      card.style.transition = 'opacity 0.4s, transform 0.4s';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    });
+
+    nameInput.value = '';
+    textInput.value = '';
+    showToast('Cảm ơn lời chúc của bạn!');
+  });
+
+  function escapeHtml(str){
+    var div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  /* ===== Bank Copy ===== */
+  window.copyBank = function(acct){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(acct).then(function(){
+        showToast('Đã sao chép: ' + acct);
+      }).catch(function(){
+        fallbackCopy(acct);
+      });
+    } else {
+      fallbackCopy(acct);
+    }
+  };
+
+  function fallbackCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); showToast('Đã sao chép: ' + text); }
+    catch(e){ showToast('Không thể sao chép'); }
+    document.body.removeChild(ta);
+  }
+
+  /* ===== Toast ===== */
+  var toastEl = document.getElementById('toast');
+  var toastTimer = null;
+  function showToast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){
+      toastEl.classList.remove('show');
+    }, 2500);
+  }
+
+})();
+</script>
+</body>
+</html>
