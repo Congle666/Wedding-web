@@ -150,9 +150,9 @@ export default function TemplateFormPage() {
               navigate(isEdit ? `/templates/edit/${id}/builder` : '/templates/new/builder')
             }
             style={{
-              background: '#fff',
-              color: '#8B1A1A',
-              border: '1px solid #8B1A1A',
+              background: '#8B1A1A',
+              color: '#fff',
+              border: 'none',
               padding: '8px 16px',
               borderRadius: 8,
               fontSize: 13,
@@ -160,7 +160,7 @@ export default function TemplateFormPage() {
               cursor: 'pointer',
             }}
           >
-            Mở Builder trực quan →
+            Mở Builder kéo thả →
           </button>
         }
       />

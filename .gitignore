@@ -38,6 +38,7 @@ desktop.ini
 
 # ─── Build artifacts ──────────────────────
 repomix-output.xml
+.vite/
 
 # ─── Claude Code ──────────────────────────
 .claude/

@@ -10,7 +10,6 @@ import LoginPage from './pages/auth/LoginPage';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import TemplatesPage from './pages/templates/TemplatesPage';
 import TemplateFormPage from './pages/templates/TemplateFormPage';
-import TemplateBuilderPage from './pages/templates/builder/TemplateBuilderPage';
 import BuilderV2Page from './pages/templates/builder-v2/BuilderV2Page';
 import OrdersPage from './pages/orders/OrdersPage';
 import OrderDetailPage from './pages/orders/OrderDetailPage';
@@ -54,10 +53,8 @@ export default function App() {
                 <Route path="/templates" element={<TemplatesPage />} />
                 <Route path="/templates/new" element={<TemplateFormPage />} />
                 <Route path="/templates/edit/:id" element={<TemplateFormPage />} />
-                <Route path="/templates/new/builder" element={<TemplateBuilderPage />} />
-                <Route path="/templates/edit/:id/builder" element={<TemplateBuilderPage />} />
-                <Route path="/templates/new/builder-v2" element={<BuilderV2Page />} />
-                <Route path="/templates/edit/:id/builder-v2" element={<BuilderV2Page />} />
+                <Route path="/templates/new/builder" element={<BuilderV2Page />} />
+                <Route path="/templates/edit/:id/builder" element={<BuilderV2Page />} />
                 <Route path="/orders" element={<OrdersPage />} />
                 <Route path="/orders/:id" element={<OrderDetailPage />} />
                 <Route path="/categories" element={<CategoriesPage />} />

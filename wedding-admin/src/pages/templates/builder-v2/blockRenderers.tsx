@@ -10,8 +10,15 @@
 import type { ElementInstance, GlobalStyles } from '../../../types/builderConfig';
 import { DEFAULT_GLOBAL_STYLES } from '../../../types/builderConfig';
 import DynamicElement from './DynamicElement';
-import { resolvePresetUrl } from '../builder/assetPresets';
 import { useBuilderContext } from './BuilderContext';
+
+/** Resolve relative preset URL to absolute for admin thumbnail display */
+function resolvePresetUrl(url: string): string {
+  if (!url) return url;
+  if (/^https?:\/\//i.test(url)) return url;
+  const origin = (import.meta.env.VITE_PREVIEW_ORIGIN as string) || 'http://localhost:3001';
+  return `${origin}${url}`;
+}
 
 interface BlockProps {
   elements?: ElementInstance[];

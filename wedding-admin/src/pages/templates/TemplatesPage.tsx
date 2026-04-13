@@ -45,10 +45,6 @@ export default function TemplatesPage() {
     navigate('/templates/new/builder');
   };
 
-  const handleOpenBuilderV2 = () => {
-    navigate('/templates/new/builder-v2');
-  };
-
   return (
     <>
       <PageHeader
@@ -56,40 +52,22 @@ export default function TemplatesPage() {
         onAdd={handleAdd}
         addText="Thêm mẫu mới"
         extra={
-          <div style={{ display: 'flex', gap: 8 }}>
-            <button
-              onClick={handleOpenBuilderV2}
-              style={{
-                background: '#8B1A1A',
-                color: '#fff',
-                border: 'none',
-                padding: '10px 20px',
-                borderRadius: 8,
-                fontSize: 14,
-                fontWeight: 500,
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              Builder V2 (mới)
-            </button>
-            <button
-              onClick={handleOpenBuilder}
-              style={{
-                background: '#fff',
-                color: '#8B1A1A',
-                border: '1px solid #8B1A1A',
-                padding: '10px 20px',
-                borderRadius: 8,
-                fontSize: 14,
-                fontWeight: 500,
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              Builder V1
-            </button>
-          </div>
+          <button
+            onClick={handleOpenBuilder}
+            style={{
+              background: '#8B1A1A',
+              color: '#fff',
+              border: 'none',
+              padding: '10px 20px',
+              borderRadius: 8,
+              fontSize: 14,
+              fontWeight: 500,
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            Tạo thiệp mới (Builder)
+          </button>
         }
       />
       <TemplateFilter filters={filters} onChange={handleFiltersChange} />
